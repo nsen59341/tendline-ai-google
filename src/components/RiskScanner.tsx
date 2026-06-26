@@ -128,7 +128,7 @@ export default function RiskScanner({ onCtaClick }: RiskScannerProps) {
             </div>
 
             {/* List block */}
-            <div className="space-y-3 h-[520px] overflow-y-auto pr-2" id="scenarios-scroll-list">
+            <div className="space-y-3 h-auto lg:h-[520px] overflow-y-visible lg:overflow-y-auto pr-2" id="scenarios-scroll-list">
               {filteredScenarios.map((item) => {
                 const isChecked = selectedLeaks.includes(item.id);
                 return (
@@ -203,7 +203,7 @@ export default function RiskScanner({ onCtaClick }: RiskScannerProps) {
           </div>
 
           {/* Right Area: Revenue Leakage Report Board */}
-          <div className="lg:col-span-4 sticky top-24">
+          <div className="lg:col-span-4 lg:sticky lg:top-24">
             <div className="bg-[#1A1A1A] rounded-none border border-[#99775C]/30 p-6 text-white shadow-none space-y-6" id="diagnostic-report">
               
               <div className="space-y-1 pb-4 border-b border-[#99775C]/20">

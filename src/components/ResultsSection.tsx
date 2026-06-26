@@ -50,11 +50,11 @@ export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
         >
           
           {/* Left Menu: Tabs Column */}
-          <div className="lg:col-span-4 space-y-3">
+          <div className="lg:col-span-4 space-y-3 overflow-hidden">
             <span className="text-[10px] font-mono font-bold text-[#99775C] uppercase tracking-widest block mb-1 px-1">
               Select Strategic Focus
             </span>
-            <div className="space-y-2.5">
+            <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible pb-3 -mx-4 px-4 lg:mx-0 lg:px-0 gap-2.5 scrollbar-none">
               {insights.map((insight, idx) => {
                 const isActive = activeTab === idx;
                 return (
@@ -63,7 +63,7 @@ export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
                     onClick={() => setActiveTab(idx)}
                     whileHover={{ scale: 1.01, x: 2 }}
                     whileTap={{ scale: 0.99 }}
-                    className={`w-full text-left p-4 rounded-none border transition-all duration-300 cursor-pointer flex items-center space-x-3 ${
+                    className={`shrink-0 w-[260px] sm:w-[320px] lg:w-full text-left p-4 rounded-none border transition-all duration-300 cursor-pointer flex items-center space-x-3 ${
                       isActive
                         ? "bg-[#1A1A1A] border-[#1A1A1A] text-white"
                         : "bg-white border-[#99775C]/20 hover:border-[#99775C]/50 text-[#1A1A1A]"
@@ -89,7 +89,7 @@ export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
             </div>
 
             {/* Inbound Warning Badge */}
-            <div className="bg-[#EAE7DD]/30 border border-[#99775C]/20 rounded-none p-4 mt-6">
+            <div className="hidden lg:block bg-[#EAE7DD]/30 border border-[#99775C]/20 rounded-none p-4 mt-6">
               <div className="flex space-x-2.5">
                 <AlertCircle className="h-5 w-5 text-[#99775C] shrink-0 mt-0.5" />
                 <div className="space-y-1">

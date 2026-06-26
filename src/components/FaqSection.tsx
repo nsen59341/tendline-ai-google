@@ -101,8 +101,8 @@ export default function FaqSection({ onCtaClick }: FaqSectionProps) {
                     aria-expanded={isExpanded}
                     id={`faq-trigger-${faq.id}`}
                   >
-                    <div className="flex items-center space-x-3">
-                      <span className="font-mono text-[8px] uppercase tracking-widest font-bold bg-[#EAE7DD] text-[#1A1A1A] px-2.5 py-1 rounded-none border border-[#99775C]/25">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                      <span className="self-start font-mono text-[8px] uppercase tracking-widest font-bold bg-[#EAE7DD] text-[#1A1A1A] px-2.5 py-1 rounded-none border border-[#99775C]/25 shrink-0">
                         {faq.category}
                       </span>
                       <h3 className="text-xs sm:text-sm font-bold text-[#1A1A1A] hover:text-[#99775C] uppercase tracking-tight transition-colors">

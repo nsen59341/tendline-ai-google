@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { PhoneCall, MessageSquare, Database, ArrowRight, ShieldCheck, Play, RefreshCw, Smartphone, Clock, Sparkles } from "lucide-react";
 
@@ -19,6 +19,14 @@ export default function Hero({ onCtaClick }: HeroProps) {
   const [simState, setSimState] = useState<SimulationState>("idle");
   const [logs, setLogs] = useState<string[]>([]);
   const [activeStep, setActiveStep] = useState(0);
+  const terminalRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll terminal logs to bottom on mobile/desktop
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [logs, simState]);
 
   const voiceSimulationSteps = [
     { text: "📞 Inbound Call Detected on Main Business Line (11:42 PM Sunday)", duration: 1500, status: "inbound" },
@@ -97,86 +105,49 @@ export default function Hero({ onCtaClick }: HeroProps) {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Parent Grid - Animates all hero contents together on load */}
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+        >
           
-          {/* Left Column: Copywriting Pitch (PAS structure) with Staggered Entrance */}
-          <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.15
-                }
-              }
-            }}
-            className="lg:col-span-7 space-y-6"
-          >
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0, y: 15 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="inline-flex items-center space-x-2 bg-[#EAE7DD] border border-[#99775C]/30 px-3 py-1 rounded-none"
-            >
+          {/* Left Column: Copywriting Pitch (PAS structure) */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center space-x-2 bg-[#EAE7DD] border border-[#99775C]/30 px-3 py-1 rounded-none">
               <Sparkles className="h-3.5 w-3.5 text-[#99775C] animate-pulse" />
               <span className="font-mono text-[9px] uppercase tracking-widest text-[#99775C] font-bold">
                 Home Services AI Infrastructure
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1 
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-              }}
-              className="text-4xl sm:text-5xl lg:text-[54px] lg:leading-[1.0] font-serif italic text-[#1A1A1A] mb-6"
-            >
-              Stop Letting Missed Calls<br/>
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] lg:leading-[1.0] font-serif italic text-[#1A1A1A] mb-6">
+              Stop Letting Missed Calls
               <span className="text-[#99775C] not-italic font-sans font-black uppercase tracking-tighter block mt-2">
                 Book Your Competitors.
               </span>
-            </motion.h1>
+            </h1>
 
             {/* Problem & Agitate */}
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0, y: 15 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="space-y-4 text-[#1A1A1A]/90"
-            >
+            <div className="space-y-4 text-[#1A1A1A]/90">
               <p className="text-base sm:text-lg font-medium leading-relaxed text-[#99775C]">
                 The average home services company <span className="font-black text-[#1A1A1A]">misses 35% to 50%</span> of inbound calls during peak seasons and after-hours.
               </p>
               <p className="text-sm leading-relaxed text-[#1A1A1A]/80">
                 Each missed dial is a high-ticket HVAC, Plumbing, Electrical, or Pest Control emergency that immediately transfers to your local competitor. With single-call ticket values averaging <span className="font-semibold text-[#1A1A1A]">$250 to $2,400+</span>, patchwork templates and generic voicemail boxes are draining your advertising budget every single day.
               </p>
-            </motion.div>
+            </div>
 
             {/* Solution */}
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0, y: 15 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="border-l-4 border-[#99775C] pl-4 py-1.5 bg-[#99775C]/5 rounded-none"
-            >
+            <div className="border-l-4 border-[#99775C] pl-4 py-1.5 bg-[#99775C]/5 rounded-none">
               <p className="text-sm font-semibold text-[#1A1A1A] leading-relaxed">
                 <strong className="text-[#99775C] uppercase tracking-wider text-xs block mb-1">The TendLine Blueprint:</strong> We replace human bottleneck stress with unified, robust, 24/7/365 AI operational pipelines. We build custom-integrated AI Voice Assistants and Web Chatbots that lock into your active CRM, capturing leads and booking jobs on autopilot.
               </p>
-            </motion.div>
+            </div>
 
             {/* Conversion CTA Trigger */}
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0, y: 15 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4"
-            >
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
               <motion.button
                 onClick={onCtaClick}
                 whileHover={{ scale: 1.03 }}
@@ -196,16 +167,10 @@ export default function Hero({ onCtaClick }: HeroProps) {
               >
                 Explore Verified ROI Insights
               </motion.a>
-            </motion.div>
+            </div>
 
             {/* Client Badges */}
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1 }
-              }}
-              className="pt-6 border-t border-[#99775C]/20 flex flex-wrap items-center gap-x-6 gap-y-3"
-            >
+            <div className="pt-6 border-t border-[#99775C]/20 flex flex-wrap items-center gap-x-6 gap-y-3">
               <span className="text-[9px] font-mono text-[#99775C] uppercase tracking-widest font-bold">Integrates securely with:</span>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-sans font-black text-[10px] uppercase tracking-widest text-[#1A1A1A]/70">
                 <span className="hover:text-[#99775C] transition-colors cursor-default">Housecall Pro</span>
@@ -216,16 +181,11 @@ export default function Hero({ onCtaClick }: HeroProps) {
                 <span>•</span>
                 <span className="hover:text-[#99775C] transition-colors cursor-default">FieldEdge</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right Column: AI Dispatch Simulator Widget */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-5"
-          >
+          <div className="lg:col-span-5">
             <div className="bg-[#1A1A1A] rounded-none border border-[#99775C]/30 shadow-xl overflow-hidden relative" id="hero-simulator-container">
               
               {/* Simulator Header */}
@@ -263,7 +223,10 @@ export default function Hero({ onCtaClick }: HeroProps) {
               </div>
 
               {/* Terminal Viewport */}
-              <div className="p-5 h-[320px] overflow-y-auto font-mono text-xs space-y-3 bg-[#130E0C] text-white select-none flex flex-col justify-end">
+              <div 
+                ref={terminalRef}
+                className="p-4 sm:p-5 h-[320px] overflow-y-auto font-mono text-xs space-y-3 bg-[#130E0C] text-white select-none flex flex-col"
+              >
                 <AnimatePresence>
                   {simState === "idle" && (
                     <motion.div
@@ -333,17 +296,17 @@ export default function Hero({ onCtaClick }: HeroProps) {
               </div>
 
               {/* Live Pipeline Flow Status Bar */}
-              <div className="bg-[#1A1A1A] border-t border-[#99775C]/20 px-5 py-3.5 grid grid-cols-4 gap-2 text-center text-[9px] font-mono">
-                <div className={`py-1 rounded-none transition-all ${simState === "inbound" ? "bg-[#99775C] text-white font-bold" : "bg-transparent text-white/30"}`}>
+              <div className="bg-[#1A1A1A] border-t border-[#99775C]/20 px-2 py-3 md:px-5 md:py-3.5 grid grid-cols-4 gap-1.5 text-center text-[8px] sm:text-[9px] font-mono">
+                <div className={`py-1 rounded-none transition-all truncate ${simState === "inbound" ? "bg-[#99775C] text-white font-bold" : "bg-transparent text-white/30"}`}>
                   1. Inbound
                 </div>
-                <div className={`py-1 rounded-none transition-all ${simState === "qualifying" ? "bg-[#99775C] text-white font-bold" : "bg-transparent text-white/30"}`}>
+                <div className={`py-1 rounded-none transition-all truncate ${simState === "qualifying" ? "bg-[#99775C] text-white font-bold" : "bg-transparent text-white/30"}`}>
                   2. Triage
                 </div>
-                <div className={`py-1 rounded-none transition-all ${simState === "crm_logging" ? "bg-[#99775C] text-white font-bold" : "bg-transparent text-white/30"}`}>
+                <div className={`py-1 rounded-none transition-all truncate ${simState === "crm_logging" ? "bg-[#99775C] text-white font-bold" : "bg-transparent text-white/30"}`}>
                   3. Sync CRM
                 </div>
-                <div className={`py-1 rounded-none transition-all ${simState === "dispatched" || simState === "complete" ? "bg-[#99775C] text-white font-bold" : "bg-transparent text-white/30"}`}>
+                <div className={`py-1 rounded-none transition-all truncate ${simState === "dispatched" || simState === "complete" ? "bg-[#99775C] text-white font-bold" : "bg-transparent text-white/30"}`}>
                   4. Alert
                 </div>
               </div>
@@ -379,8 +342,8 @@ export default function Hero({ onCtaClick }: HeroProps) {
                 </div>
               )}
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
