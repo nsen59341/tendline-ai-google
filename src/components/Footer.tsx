@@ -122,12 +122,28 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
 
             <motion.button
               onClick={onCtaClick}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full bg-[#EAE7DD] hover:bg-white text-[#1A1A1A] hover:text-[#1A1A1A] text-xs font-bold uppercase tracking-widest py-3.5 px-6 rounded-none transition-all duration-300 shadow-none cursor-pointer font-sans"
+              animate={{
+                scale: [1, 1.03, 1],
+                boxShadow: [
+                  "0 0 10px rgba(153, 119, 92, 0.3)",
+                  "0 0 25px rgba(153, 119, 92, 0.85)",
+                  "0 0 10px rgba(153, 119, 92, 0.3)"
+                ]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative w-full bg-[#EAE7DD] hover:bg-white text-[#1A1A1A] text-xs font-black uppercase tracking-widest py-3.5 px-6 rounded-none transition-colors cursor-pointer font-sans border border-[#99775C]/80 overflow-hidden"
               id="footer-cta-btn"
             >
-              Book Discovery Meeting
+              <span className="relative z-10 flex items-center justify-center space-x-2">
+                <span>Book Discovery Meeting</span>
+                <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse shrink-0" />
+              </span>
             </motion.button>
           </div>
 

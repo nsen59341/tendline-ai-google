@@ -122,27 +122,20 @@ export default function Hero({ onCtaClick }: HeroProps) {
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl lg:text-[44px] xl:text-[54px] lg:leading-[1.0] font-serif italic text-[#1A1A1A]">
+            <h1 className="text-3xl sm:text-5xl lg:text-[50px] xl:text-[58px] lg:leading-[1.0] font-serif italic text-[#1A1A1A]">
               Stop Letting Missed Calls
-              <span className="text-[#99775C] not-italic font-sans font-black uppercase tracking-tighter block mt-1 sm:mt-2 text-3xl sm:text-5xl lg:text-[50px] xl:text-[54px]">
+              <span className="text-[#99775C] not-italic font-sans font-black uppercase tracking-tighter block mt-1 sm:mt-2 text-3xl sm:text-5xl lg:text-[52px] xl:text-[60px]">
                 Book Your Competitors.
               </span>
             </h1>
 
-            {/* Problem & Agitate */}
-            <div className="space-y-2 sm:space-y-4 text-[#1A1A1A]/90">
-              <p className="text-sm sm:text-base lg:text-lg font-medium leading-relaxed text-[#99775C]">
-                The average home services company <span className="font-black text-[#1A1A1A]">misses 35% to 50%</span> of inbound calls during peak seasons and after-hours.
+            {/* Problem & Agitate - Scannable & Trimmed */}
+            <div className="space-y-2 text-[#1A1A1A]/90">
+              <p className="text-xs sm:text-base lg:text-lg font-medium leading-snug text-[#99775C]">
+                Contractors <span className="font-black text-[#1A1A1A]">miss 35% to 50% of inbound calls</span>, losing <span className="font-black text-[#1A1A1A]">$250–$2,400 per lead</span>.
               </p>
-              <p className="hidden sm:block text-xs sm:text-sm leading-relaxed text-[#1A1A1A]/80">
-                Each missed dial is a high-ticket HVAC, Plumbing, Electrical, or Pest Control emergency that immediately transfers to your local competitor. With single-call ticket values averaging <span className="font-semibold text-[#1A1A1A]">$250 to $2,400+</span>, patchwork templates and generic voicemail boxes are draining your advertising budget every single day.
-              </p>
-            </div>
-
-            {/* Solution */}
-            <div className="hidden md:block border-l-4 border-[#99775C] pl-4 py-1.5 bg-[#99775C]/5 rounded-none">
-              <p className="text-xs sm:text-sm font-semibold text-[#1A1A1A] leading-relaxed">
-                <strong className="text-[#99775C] uppercase tracking-wider text-[10px] sm:text-xs block mb-0.5 sm:mb-1">The TendLine Blueprint:</strong> We replace human bottleneck stress with unified, robust, 24/7/365 AI operational pipelines. We build custom-integrated AI Voice Assistants and Web Chatbots that lock into your active CRM, capturing leads and booking jobs on autopilot.
+              <p className="text-xs sm:text-sm font-semibold text-[#1A1A1A] leading-relaxed border-l-2 border-[#99775C] pl-3 py-1 bg-[#99775C]/5">
+                <strong className="text-[#99775C] uppercase tracking-wider text-[10px] sm:text-xs block mb-0.5">The Solution:</strong> 24/7 AI Voice & Chat agents built for HVAC, Plumbing & Electrical. We connect to your CRM to answer calls, qualify leads, and book jobs on autopilot.
               </p>
             </div>
 
@@ -150,19 +143,35 @@ export default function Hero({ onCtaClick }: HeroProps) {
             <div className="grid grid-cols-2 sm:flex sm:flex-row items-center gap-2.5 sm:gap-4 pt-1 sm:pt-2 w-full">
               <motion.button
                 onClick={onCtaClick}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-[#1A1A1A] text-white py-2.5 sm:px-10 sm:py-4 font-bold uppercase tracking-widest text-[9px] xs:text-[11px] sm:text-xs hover:bg-[#99775C] transition-colors rounded-none cursor-pointer text-center leading-snug"
+                animate={{
+                  scale: [1, 1.03, 1],
+                  boxShadow: [
+                    "0 0 10px rgba(153, 119, 92, 0.3)",
+                    "0 0 25px rgba(153, 119, 92, 0.85)",
+                    "0 0 10px rgba(153, 119, 92, 0.3)"
+                  ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.96 }}
+                className="relative bg-[#1A1A1A] text-white py-3 px-4 sm:px-8 sm:py-3.5 font-black uppercase tracking-widest text-[9px] xs:text-[11px] sm:text-xs hover:bg-[#99775C] transition-colors rounded-none cursor-pointer text-center leading-snug border border-[#99775C]/80 group overflow-hidden"
                 id="hero-primary-cta"
               >
-                Request AI Audit
+                <span className="relative z-10 flex items-center justify-center space-x-1.5">
+                  <span>Request Free AI Audit</span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
+                </span>
               </motion.button>
               
               <motion.a
                 href="#insights"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="py-2.5 sm:px-6 sm:py-4 border border-[#99775C] text-[9px] xs:text-[11px] sm:text-xs font-bold uppercase tracking-widest text-[#1A1A1A] hover:bg-[#99775C] hover:text-white transition-colors text-center rounded-none leading-snug"
+                className="py-3 px-4 sm:px-6 sm:py-3.5 border border-[#99775C] text-[9px] xs:text-[11px] sm:text-xs font-bold uppercase tracking-widest text-[#1A1A1A] hover:bg-[#99775C] hover:text-white transition-colors text-center rounded-none leading-snug"
                 id="hero-secondary-cta"
               >
                 Explore ROI Insights

@@ -158,16 +158,32 @@ export default function OfferStack({ onCtaClick }: OfferStackProps) {
                   {/* Action Button */}
                   <motion.button
                     onClick={onCtaClick}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`w-full text-xs font-bold uppercase tracking-widest py-3.5 px-6 rounded-none transition-all duration-300 cursor-pointer ${
+                    animate={isPopular ? {
+                      scale: [1, 1.03, 1],
+                      boxShadow: [
+                        "0 0 10px rgba(153, 119, 92, 0.3)",
+                        "0 0 25px rgba(153, 119, 92, 0.85)",
+                        "0 0 10px rgba(153, 119, 92, 0.3)"
+                      ]
+                    } : {}}
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.96 }}
+                    className={`relative w-full text-xs font-black uppercase tracking-widest py-3.5 px-6 rounded-none transition-colors cursor-pointer overflow-hidden ${
                       isPopular
-                        ? "bg-[#1A1A1A] hover:bg-[#99775C] text-white"
+                        ? "bg-[#1A1A1A] hover:bg-[#99775C] text-white border border-[#99775C]/80"
                         : "border border-[#99775C] hover:bg-[#1A1A1A] hover:border-[#1A1A1A] hover:text-white text-[#1A1A1A]"
                     }`}
                     id={`offers-cta-btn-${tier.id}`}
                   >
-                    Request Blueprint Audit
+                    <span className="relative z-10 flex items-center justify-center space-x-2">
+                      <span>{isPopular ? "Book Discovery Meeting" : "Request Blueprint Audit"}</span>
+                      {isPopular && <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />}
+                    </span>
                   </motion.button>
                 </div>
               </motion.div>

@@ -84,12 +84,28 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
           <div className="hidden md:flex items-center">
             <motion.button
               onClick={onCtaClick}
-              whileHover={{ scale: 1.02, backgroundColor: "#99775C", color: "#FFFFFF" }}
-              whileTap={{ scale: 0.98 }}
-              className="px-6 py-2 border border-[#99775C] text-xs font-bold uppercase tracking-widest text-[#1A1A1A] transition-all duration-300 cursor-pointer rounded-none"
+              animate={{
+                scale: [1, 1.03, 1],
+                boxShadow: [
+                  "0 0 8px rgba(153, 119, 92, 0.3)",
+                  "0 0 22px rgba(153, 119, 92, 0.85)",
+                  "0 0 8px rgba(153, 119, 92, 0.3)"
+                ]
+              }}
+              transition={{
+                duration: 2.2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative bg-[#1A1A1A] text-white px-6 py-2.5 text-xs font-black uppercase tracking-widest hover:bg-[#99775C] transition-colors rounded-none cursor-pointer border border-[#99775C]/80 group overflow-hidden"
               id="navbar-cta-btn"
             >
-              Strategy Session
+              <span className="relative z-10 flex items-center space-x-1.5">
+                <span>Strategy Session</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
+              </span>
             </motion.button>
           </div>
 
@@ -130,16 +146,34 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
                 </a>
               ))}
               <div className="pt-4 pb-2 border-t border-[#99775C]/20 px-3">
-                <button
+                <motion.button
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     onCtaClick();
                   }}
-                  className="w-full text-center border border-[#99775C] text-xs font-bold uppercase tracking-widest py-3 hover:bg-[#99775C] hover:text-[#EAE7DD] transition-colors rounded-none"
+                  animate={{
+                    scale: [1, 1.02, 1],
+                    boxShadow: [
+                      "0 0 8px rgba(153, 119, 92, 0.3)",
+                      "0 0 20px rgba(153, 119, 92, 0.8)",
+                      "0 0 8px rgba(153, 119, 92, 0.3)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="relative w-full bg-[#1A1A1A] text-white py-3 text-xs font-black uppercase tracking-widest hover:bg-[#99775C] transition-colors rounded-none cursor-pointer text-center border border-[#99775C]/80 overflow-hidden"
                   id="mobile-navbar-cta-btn"
                 >
-                  Book Strategy Session
-                </button>
+                  <span className="relative z-10 flex items-center justify-center space-x-1.5">
+                    <span>Book Strategy Session</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
+                  </span>
+                </motion.button>
               </div>
             </div>
           </motion.div>

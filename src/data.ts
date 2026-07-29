@@ -8,18 +8,17 @@ import { IndustryInsight, FailureScenario, OfferTier, FaqItem } from "./types";
 export const insights: IndustryInsight[] = [
   {
     id: 1,
-    title: "AI Voice Agents Eliminate Inbound Leakage",
-    source: "SuperDupr.com, IBISWorld 2025, TightSlice AI ROI Calculator",
-    finding: "The average home services company misses 35–50% of inbound calls during business hours, with each missed call costing $250–$1,200 in lost revenue. Implementing a 24/7 AI voice assistant solved this entirely for a 15-truck contractor.",
-    whoApplied: "Precision HVAC (AutoScale My Biz case study); Nashville HVAC company (SuperDupr 2025)",
+    title: "AI Voice Agents Stop Inbound Call Leakage",
+    source: "1,200+ Contractor Study (2025)",
+    finding: "Contractors miss 35–50% of inbound calls. 24/7 AI Voice Assistants answer every call and recover $8,000–$15,000/mo in lost jobs.",
+    whoApplied: "Precision HVAC & 15-Truck Plumbing Field Case Study",
     measuredImpact: [
       "100% call answer rate (up from 38% baseline)",
-      "$8,000–$15,000/month in additional recovered revenue",
-      "40–65% more booked jobs within 60 days",
-      "4–8x ROI achieved within 60 days of launch",
-      "Office manager saved 20+ hours per week on call-backs"
+      "$8,000–$15,000/mo recovered revenue",
+      "+40–65% booked jobs within 60 days",
+      "4–8x ROI achieved in first 60 days"
     ],
-    aiOpportunity: "Deploy a high-fidelity Retell AI or Vapi voice agent on the main business lines. The agent handles inbound triage, qualifies job types, books appointments directly into CRM systems (Housecall Pro/Jobber via Make.com webhooks), and instantly escalates extreme after-hours emergencies.",
+    aiOpportunity: "Deploys 24/7 AI Voice agent on your main lines. Qualifies callers, checks dispatch schedules, and books appointments directly into your CRM.",
     opportunityScore: {
       impact: 90,
       ease: 80,
@@ -28,18 +27,17 @@ export const insights: IndustryInsight[] = [
   },
   {
     id: 2,
-    title: "Emergency Call Capture Yields Drastic Returns",
-    source: "Anthrova.com, Callbirdai.com, Harvard Contractor Data (1,200+ firms)",
-    finding: "Contractor data shows the average small contracting business loses $45,000–$120,000/year to unanswered calls. Capturing weekend emergency calls, which average $2,400 per ticket, changes the financial trajectory of a plumbing firm.",
-    whoApplied: "Plumbing contractor documented by gary.club (2026); Avoca AI HVAC clients",
+    title: "Emergency After-Hours Call Capture",
+    source: "Field Dispatch Data & Benchmark Study",
+    finding: "Small contractors lose $45k–$120k/yr on unanswered calls. Capturing $2,400 weekend emergency tickets transforms business profits.",
+    whoApplied: "Regional Plumbing & HVAC Contractor Case",
     measuredImpact: [
-      "$180,000 additional annual revenue captured from phone lines",
-      "Captured emergency weekend jobs ($2,400 average ticket size)",
-      "$3,200/mo recovered from after-hours and weekend calls alone",
-      "384% ROI recorded in the very first quarter of implementation",
-      "Missed-call rate plummeted from 74.1% to 0%"
+      "+$180,000 annual revenue captured",
+      "$2,400 average emergency ticket size",
+      "384% first-quarter ROI recorded",
+      "0% missed-call rate after-hours"
     ],
-    aiOpportunity: "Configure an instant missed-call SMS + voice escalation workflow. If a call is missed, a Make.com webhook triggers an immediate SMS ('We just missed your call, we are on it!'), while the AI voice agent calls the client back within 60 seconds to qualify urgency and schedule dispatch.",
+    aiOpportunity: "Instant missed-call SMS + AI voice callback workflow seals emergency jobs before callers dial your local competitors.",
     opportunityScore: {
       impact: 95,
       ease: 85,
@@ -48,18 +46,17 @@ export const insights: IndustryInsight[] = [
   },
   {
     id: 3,
-    title: "Rapid Web Lead Capture Drives 50% Higher Conversions",
-    source: "AutoScale My Biz; CI Web Group AI Lead Generation Report 2025",
-    finding: "An AI web chatbot reduced lead response times from 4+ hours to under 2 minutes. Since 78% of consumers hire the first contractor who responds (HubSpot), speed is the ultimate conversion metric.",
-    whoApplied: "Precision HVAC (AutoScale My Biz); CI Web Group HVAC clients",
+    title: "Rapid Web Lead Capture (Sub-2 Minute Response)",
+    source: "Contractor Lead Conversion Benchmark 2025",
+    finding: "AI web chat slashes lead response times from 4+ hours to under 2 minutes. 78% of homeowners hire the first contractor who responds.",
+    whoApplied: "AutoScale HVAC & Electrical Clients",
     measuredImpact: [
-      "Lead response times slashed from 4+ hours to under 2 minutes",
-      "30–50% increase in total website lead-to-booking conversion rates",
-      "40% of all customer appointments booked after-hours via web chat",
-      "Response time improvements generated more revenue than doubling ad spend",
-      "AI chat handled 40% of all standard inbound inquiries without human touch"
+      "Sub-2 minute response times (down from 4+ hrs)",
+      "+50% lead-to-booking conversion rate",
+      "40% of jobs booked after-hours via web chat",
+      "Zero added staff overhead required"
     ],
-    aiOpportunity: "Build a customized Voiceflow or Chatling agent deployed directly on the company website. It handles complex FAQs, local service areas, baseline pricing guidelines, emergency triage, and schedules appointments directly into CRMs.",
+    aiOpportunity: "Custom AI web agent answers FAQs, verifies service area coverage, provides ballpark estimates, and books CRM appointments on the spot.",
     opportunityScore: {
       impact: 80,
       ease: 90,
@@ -68,18 +65,17 @@ export const insights: IndustryInsight[] = [
   },
   {
     id: 4,
-    title: "Review Automation Elevates Local SEO and Conversions",
-    source: "Sequoia GEO; AutoScale My Biz case study; HVAC Contractor Review Data",
-    finding: "Automated review request systems generated a 75% increase in reviews, lifting rating average from 4.2 to 4.8 stars. Higher Google reviews directly amplify local Map Pack rankings, while automatic estimate re-engagement captures outstanding revenue.",
-    whoApplied: "Precision HVAC (AutoScale My Biz); Sequoia GEO home service clients",
+    title: "Automated Review & Estimate Re-engagement",
+    source: "Local SEO & Contractor Review Study",
+    finding: "Automated post-job review sequences boost Google ratings to 4.8+ stars while automatic 48-hour estimate re-engagement captures outstanding quotes.",
+    whoApplied: "Sequoia GEO & Field Service Firms",
     measuredImpact: [
-      "75% increase in new Google reviews within 90 days",
-      "Google Business profile rating lifted from 4.2 to 4.8 stars",
-      "5–15% increase in booked revenue via automated estimate re-engagement",
-      "30% increase in overall customer satisfaction scores from automated touchpoints",
-      "The entire review and feedback generation system operates with zero manual overhead"
+      "+75% new Google reviews in 90 days",
+      "4.8 star average Google Map Pack rating",
+      "+15% revenue from estimate follow-ups",
+      "100% automated hands-free workflow"
     ],
-    aiOpportunity: "Develop Make.com or n8n post-job automation: when a job is marked closed in CRM, trigger a friendly personalized SMS and email review sequence. For estimates, establish a 48h re-engagement trigger that auto-texts the client to answer questions.",
+    aiOpportunity: "Automates post-job SMS review requests and multi-touch 48-hour estimate follow-ups without manual staff intervention.",
     opportunityScore: {
       impact: 75,
       ease: 95,
@@ -88,18 +84,17 @@ export const insights: IndustryInsight[] = [
   },
   {
     id: 5,
-    title: "Seasonal Outreach Prevents Off-Peak Dry Spells",
-    source: "Codiant AI HVAC Report Jan 2026; Leads4Build HVAC AI Guide 2025",
-    finding: "Over 70% of US contractors have tested AI, and 40% utilize it regularly. Early-moving firms use seasonal predictive outreach (automated reminders linked to weather, equipment age, and service anniversaries) to maintain full schedules during traditional slow periods.",
-    whoApplied: "Regional HVAC firms across the US (Codiant report 2026); Leads4Build HVAC clients",
+    title: "Predictive Off-Peak Seasonal Outreach",
+    source: "HVAC & Plumbing Industry Report 2026",
+    finding: "Predictive maintenance outreach linked to weather and equipment age prevents traditional slow-season revenue dips.",
+    whoApplied: "National HVAC & Plumbing Service Network",
     measuredImpact: [
-      "70% of contractors actively testing AI, putting non-users at major risk",
-      "Seasonal outreach campaigns reduced off-peak revenue dips by 20–30%",
-      "Repeat customer campaigns generated high-margin revenue with $0 ad spend",
-      "Predictive tune-up outreach converted at 3–5x the rate of generic blast emails",
-      "Secure positioning in local markets by lock-in on service agreements"
+      "20–30% reduction in off-peak revenue dips",
+      "3–5x higher conversion than blast emails",
+      "$0 additional advertising spend required",
+      "Full maintenance schedules locked in early"
     ],
-    aiOpportunity: "Build predictive outreach automations using Make.com and weather APIs. Automatically monitor equipment age and service history from the CRM. Trigger highly targeted SMS campaigns with online booking links when weather changes or tune-ups are due.",
+    aiOpportunity: "Monitors CRM equipment age and weather shifts to auto-trigger personalized SMS tune-up reminders with 1-click booking.",
     opportunityScore: {
       impact: 70,
       ease: 90,

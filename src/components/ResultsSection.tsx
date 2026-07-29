@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { insights } from "../data";
-import { FileText, CheckCircle2, Award, Zap, AlertCircle, TrendingUp, ChevronRight } from "lucide-react";
+import { FileText, CheckCircle2, Award, Zap, AlertCircle, TrendingUp, Play } from "lucide-react";
 
 interface ResultsSectionProps {
   onCtaClick: () => void;
@@ -14,73 +14,102 @@ interface ResultsSectionProps {
 
 export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
   const [activeTab, setActiveTab] = useState(0);
+  const [userInteracted, setUserInteracted] = useState(false);
+  const [autoplayCount, setAutoplayCount] = useState(0);
+
+  // Autoplay feature: auto-advance through 2-3 items once, then stop & hand control to user
+  useEffect(() => {
+    if (userInteracted || autoplayCount >= 2) return;
+
+    const timer = setTimeout(() => {
+      setActiveTab((prev) => (prev + 1) % insights.length);
+      setAutoplayCount((prev) => prev + 1);
+    }, 3200);
+
+    return () => clearTimeout(timer);
+  }, [activeTab, userInteracted, autoplayCount]);
+
+  const handleTabClick = (idx: number) => {
+    setUserInteracted(true);
+    setActiveTab(idx);
+  };
+
   const currentInsight = insights[activeTab];
 
   return (
-    <section className="py-20 bg-[#EAE7DD] border-b border-[#99775C]/20" id="insights">
+    <section className="py-16 sm:py-20 bg-[#EAE7DD] border-b border-[#99775C]/20" id="insights">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Scroll Animation */}
+        {/* Section Header */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mb-16 space-y-3"
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-10 space-y-2"
         >
           <span className="font-mono text-xs text-[#99775C] uppercase tracking-widest font-extrabold flex items-center">
             <TrendingUp className="h-4 w-4 mr-1.5 text-[#99775C]" />
-            Empirical B2B Performance Audits
+            Field-Tested AI Benchmarks
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1A1A1A] tracking-tighter uppercase">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#1A1A1A] tracking-tighter uppercase">
             5 Strategic Insights: <span className="font-serif italic text-[#99775C] lowercase">the science of AI ROI</span>
           </h2>
-          <p className="text-sm sm:text-base text-[#99775C] font-medium leading-relaxed">
-            These findings are backed by contractor data from over 1,200 firms, IBISWorld 2025 studies, and real-world system deployments. Explore each strategic vertical below.
+          <p className="text-xs sm:text-sm text-[#1A1A1A]/80 font-medium leading-relaxed">
+            Data from 1,200+ HVAC, Plumbing & Electrical contractors. Scannable findings in 15 seconds:
           </p>
         </motion.div>
 
-        {/* Desktop Interface: Interactive Grid Board with staggered fade-in */}
+        {/* Interactive Grid Board */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
         >
           
           {/* Left Menu: Tabs Column */}
           <div className="lg:col-span-4 space-y-3 overflow-hidden">
-            <span className="text-[10px] font-mono font-bold text-[#99775C] uppercase tracking-widest block mb-1 px-1">
-              Select Strategic Focus
-            </span>
-            <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible pb-3 -mx-4 px-4 lg:mx-0 lg:px-0 gap-2.5 scrollbar-none">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-[10px] font-mono font-bold text-[#99775C] uppercase tracking-widest block">
+                Select Vertical Insight
+              </span>
+              {!userInteracted && autoplayCount < 2 && (
+                <span className="text-[9px] font-mono text-[#99775C] uppercase tracking-widest flex items-center space-x-1 animate-pulse">
+                  <Play className="h-2.5 w-2.5 fill-[#99775C]" />
+                  <span>Autoplay Preview</span>
+                </span>
+              )}
+            </div>
+
+            <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible pb-3 -mx-4 px-4 lg:mx-0 lg:px-0 gap-2 scrollbar-none">
               {insights.map((insight, idx) => {
                 const isActive = activeTab === idx;
                 return (
                   <motion.button
                     key={insight.id}
-                    onClick={() => setActiveTab(idx)}
+                    onClick={() => handleTabClick(idx)}
                     whileHover={{ scale: 1.01, x: 2 }}
                     whileTap={{ scale: 0.99 }}
-                    className={`shrink-0 w-[260px] sm:w-[320px] lg:w-full text-left p-4 rounded-none border transition-all duration-300 cursor-pointer flex items-center space-x-3 ${
+                    className={`shrink-0 w-[240px] sm:w-[280px] lg:w-full text-left p-3 sm:p-3.5 rounded-none border transition-all duration-300 cursor-pointer flex items-center space-x-3 ${
                       isActive
-                        ? "bg-[#1A1A1A] border-[#1A1A1A] text-white"
+                        ? "bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-md"
                         : "bg-white border-[#99775C]/20 hover:border-[#99775C]/50 text-[#1A1A1A]"
                     }`}
                     id={`insight-tab-${idx}`}
                   >
-                    <div className={`h-8 w-8 rounded-none flex items-center justify-center shrink-0 ${
+                    <div className={`h-7 w-7 rounded-none flex items-center justify-center shrink-0 ${
                       isActive ? "bg-[#99775C] text-white" : "bg-[#EAE7DD] text-[#99775C]"
                     }`}>
                       <span className="font-mono text-xs font-black">0{insight.id}</span>
                     </div>
-                    <div className="truncate">
-                      <h4 className={`text-xs font-bold uppercase tracking-widest truncate ${isActive ? "text-white" : "text-[#1A1A1A]"}`}>
-                        {insight.title.split(":")[0]}
+                    <div className="truncate flex-1">
+                      <h4 className={`text-xs font-bold uppercase tracking-wider truncate ${isActive ? "text-white" : "text-[#1A1A1A]"}`}>
+                        {insight.title}
                       </h4>
-                      <p className={`text-[10px] font-mono truncate uppercase tracking-wider ${isActive ? "text-[#EAE7DD]/70" : "text-[#99775C]"}`}>
-                        Score: {insight.opportunityScore.overall}% • {insight.source.split(",")[0]}
+                      <p className={`text-[9px] font-mono truncate uppercase tracking-wider ${isActive ? "text-[#EAE7DD]/70" : "text-[#99775C]"}`}>
+                        Rank: {insight.opportunityScore.overall}% Score
                       </p>
                     </div>
                   </motion.button>
@@ -88,16 +117,13 @@ export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
               })}
             </div>
 
-            {/* Inbound Warning Badge */}
-            <div className="hidden lg:block bg-[#EAE7DD]/30 border border-[#99775C]/20 rounded-none p-4 mt-6">
-              <div className="flex space-x-2.5">
-                <AlertCircle className="h-5 w-5 text-[#99775C] shrink-0 mt-0.5" />
-                <div className="space-y-1">
-                  <h5 className="text-xs font-bold text-[#1A1A1A] uppercase tracking-widest">The cost of doing nothing</h5>
-                  <p className="text-[11px] text-[#99775C] leading-relaxed font-medium">
-                    Continuing to run unmonitored lines loses up to $120,000/year. Your competitors are deploying automated systems today.
-                  </p>
-                </div>
+            {/* Quick Warning Badge */}
+            <div className="hidden lg:block bg-white/80 border border-[#99775C]/20 rounded-none p-3.5 mt-4">
+              <div className="flex space-x-2.5 items-center">
+                <AlertCircle className="h-4 w-4 text-[#99775C] shrink-0" />
+                <p className="text-[11px] text-[#1A1A1A] leading-snug font-medium">
+                  Unanswered lines leak up to <strong className="font-black text-[#99775C]">$120,000/year</strong>. Automated dispatch plugs this leak on day 1.
+                </p>
               </div>
             </div>
           </div>
@@ -107,138 +133,87 @@ export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
-                initial={{ opacity: 0, x: 15 }}
+                initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -15 }}
-                transition={{ duration: 0.3 }}
-                className="bg-white border border-[#99775C]/20 rounded-none p-6 sm:p-8 space-y-6"
+                exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.25 }}
+                className="bg-white border border-[#99775C]/20 rounded-none p-5 sm:p-7 space-y-5 shadow-sm"
                 id="insight-display-panel"
               >
                 {/* Header Area */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-4 border-b border-[#99775C]/20">
-                  <div className="space-y-1.5">
-                    <span className="font-mono text-[9px] uppercase bg-[#EAE7DD] text-[#1A1A1A] px-2.5 py-1 rounded-none font-bold border border-[#99775C]/30 tracking-widest">
-                      System Case Analysis {currentInsight.id}
-                    </span>
-                    <h3 className="font-serif italic text-2xl text-[#1A1A1A] tracking-tight">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#99775C]/20">
+                  <div className="space-y-1">
+                    <div className="flex items-center space-x-2">
+                      <span className="font-mono text-[9px] uppercase bg-[#EAE7DD] text-[#1A1A1A] px-2 py-0.5 font-bold border border-[#99775C]/30 tracking-widest">
+                        Insight 0{currentInsight.id}
+                      </span>
+                      <span className="text-[10px] font-mono text-[#99775C] uppercase tracking-wider font-semibold">
+                        {currentInsight.source}
+                      </span>
+                    </div>
+                    <h3 className="font-serif italic text-xl sm:text-2xl text-[#1A1A1A] tracking-tight">
                       {currentInsight.title}
                     </h3>
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-[#99775C]">
-                      <strong className="text-[#99775C]">Primary Source:</strong> {currentInsight.source}
-                    </p>
                   </div>
 
-                  {/* Score Indicator Badge */}
-                  <div className="bg-[#EAE7DD] border border-[#99775C]/30 px-4 py-2.5 rounded-none text-center shrink-0">
-                    <span className="text-[9px] font-mono text-[#99775C] uppercase tracking-widest block leading-none mb-1">
+                  {/* Priority Rank Badge */}
+                  <div className="bg-[#EAE7DD] border border-[#99775C]/30 px-3.5 py-1.5 rounded-none text-center shrink-0 self-start sm:self-auto">
+                    <span className="text-[8px] font-mono text-[#99775C] uppercase tracking-widest block leading-none mb-0.5">
                       Priority Rank
                     </span>
-                    <span className="text-2xl font-sans font-black text-[#99775C] leading-none">
+                    <span className="text-xl font-sans font-black text-[#99775C] leading-none">
                       {currentInsight.opportunityScore.overall}%
                     </span>
                   </div>
                 </div>
 
-                {/* The Finding & The Applied Case */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                  <div className="md:col-span-7 space-y-4">
-                    <div className="space-y-1">
-                      <h4 className="text-xs font-mono text-[#99775C] uppercase tracking-widest font-bold flex items-center">
-                        <FileText className="h-3.5 w-3.5 mr-1" />
-                        The Macro Finding
-                      </h4>
-                      <p className="text-xs sm:text-sm text-[#1A1A1A] leading-relaxed font-medium">
-                        {currentInsight.finding}
-                      </p>
-                    </div>
-
-                    <div className="space-y-1.5 bg-[#EAE7DD]/30 border border-[#99775C]/15 p-3.5 rounded-none">
-                      <h4 className="text-xs font-mono text-[#1A1A1A] uppercase tracking-widest font-bold flex items-center">
-                        <Award className="h-3.5 w-3.5 mr-1 text-[#99775C]" />
-                        Applied proof-of-concept
-                      </h4>
-                      <p className="text-[11px] text-[#99775C] leading-relaxed font-medium">
-                        Implemented by: <strong className="text-[#1A1A1A] font-black">{currentInsight.whoApplied}</strong>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Micro Score Breakdowns */}
-                  <div className="md:col-span-5 bg-[#EAE7DD]/50 border border-[#99775C]/15 rounded-none p-4 space-y-3.5 flex flex-col justify-center">
-                    <h5 className="text-[10px] font-mono font-bold text-[#1A1A1A] uppercase tracking-widest border-b border-[#99775C]/15 pb-1">
-                      Opportunity Blueprint
-                    </h5>
-                    
-                    {/* Impact score bar */}
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-[10px] font-mono text-[#99775C] uppercase tracking-wider">
-                        <span>FINANCIAL IMPACT</span>
-                        <span className="font-bold text-[#1A1A1A]">{currentInsight.opportunityScore.impact}%</span>
-                      </div>
-                      <div className="h-1.5 bg-[#99775C]/20 rounded-none overflow-hidden">
-                        <div className="h-full bg-[#99775C]" style={{ width: `${currentInsight.opportunityScore.impact}%` }} />
-                      </div>
-                    </div>
-
-                    {/* Ease score bar */}
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-[10px] font-mono text-[#99775C] uppercase tracking-wider">
-                        <span>INTEGRATION FEASIBILITY</span>
-                        <span className="font-bold text-[#1A1A1A]">{currentInsight.opportunityScore.ease}%</span>
-                      </div>
-                      <div className="h-1.5 bg-[#99775C]/20 rounded-none overflow-hidden">
-                        <div className="h-full bg-[#99775C]" style={{ width: `${currentInsight.opportunityScore.ease}%` }} />
-                      </div>
-                    </div>
-
-                    <p className="text-[8px] text-[#99775C] font-mono leading-relaxed pt-1 border-t border-[#99775C]/10 uppercase">
-                      *Overall rank calculated as a weighted (70% Impact / 30% Feasibility) automation priority model.
-                    </p>
-                  </div>
+                {/* Finding Callout */}
+                <div className="bg-[#EAE7DD]/40 border-l-3 border-[#99775C] p-3.5 space-y-1">
+                  <span className="text-[9px] font-mono uppercase text-[#99775C] font-black tracking-widest flex items-center">
+                    <FileText className="h-3 w-3 mr-1" /> Key Finding
+                  </span>
+                  <p className="text-xs sm:text-sm text-[#1A1A1A] font-medium leading-relaxed">
+                    {currentInsight.finding}
+                  </p>
                 </div>
 
-                {/* Measured Impact Checklist */}
-                <div className="space-y-2.5">
-                  <h4 className="text-xs font-mono text-[#99775C] uppercase tracking-widest font-bold">
-                    Empirically Recorded Performance Metrics
+                {/* Measured Impact Grid */}
+                <div className="space-y-2">
+                  <h4 className="text-[10px] font-mono text-[#99775C] uppercase tracking-widest font-black">
+                    Measured Results (Field Case Data)
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {currentInsight.measuredImpact.map((metric, i) => (
-                      <div key={i} className="flex items-start space-x-2 bg-[#EAE7DD]/20 border border-[#99775C]/15 p-3 rounded-none hover:border-[#99775C]/45 transition-colors">
-                        <CheckCircle2 className="h-4 w-4 text-[#99775C] shrink-0 mt-0.5" />
-                        <span className="text-[11px] font-bold text-[#1A1A1A] tracking-tight uppercase leading-relaxed">{metric}</span>
+                      <div key={i} className="flex items-center space-x-2 bg-white border border-[#99775C]/20 p-2.5 rounded-none">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-[#99775C] shrink-0" />
+                        <span className="text-[11px] font-bold text-[#1A1A1A] tracking-tight uppercase leading-snug">{metric}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Actionable AI Solution */}
-                <div className="bg-[#1A1A1A] text-white rounded-none p-5 border border-[#99775C]/20 relative overflow-hidden">
-                  <div className="absolute right-0 bottom-0 translate-y-4 translate-x-4 opacity-10">
-                    <Zap className="h-28 w-28 text-white" />
-                  </div>
-                  <div className="relative z-10 space-y-2">
-                    <h4 className="text-xs font-mono text-[#99775C] uppercase tracking-widest font-extrabold flex items-center">
-                      <Zap className="h-4 w-4 mr-1 text-[#99775C]" />
-                      TendLine Infrastructure Integration
-                    </h4>
-                    <p className="text-xs leading-relaxed text-[#EAE7DD] font-light">
-                      {currentInsight.aiOpportunity}
-                    </p>
-                  </div>
+                {/* Actionable Solution */}
+                <div className="bg-[#1A1A1A] text-white p-4 border border-[#99775C]/30 space-y-1.5">
+                  <h4 className="text-[10px] font-mono text-[#99775C] uppercase tracking-widest font-extrabold flex items-center">
+                    <Zap className="h-3.5 w-3.5 mr-1 text-[#99775C]" />
+                    How TendLine Solves This
+                  </h4>
+                  <p className="text-xs leading-relaxed text-[#EAE7DD] font-normal">
+                    {currentInsight.aiOpportunity}
+                  </p>
                 </div>
 
-                {/* Sub CTA row */}
-                <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                {/* Quick Deploy Trigger */}
+                <div className="pt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <p className="text-[10px] text-[#99775C] uppercase tracking-wider font-bold">
-                    Ready to deploy this exact system in your exclusive local territory?
+                    Deploy this module in your exclusive territory:
                   </p>
                   <button
                     onClick={onCtaClick}
-                    className="px-6 py-2.5 border border-[#99775C] text-xs font-bold uppercase tracking-widest text-[#1A1A1A] hover:bg-[#99775C] hover:text-white transition-colors duration-200 cursor-pointer rounded-none"
+                    className="px-5 py-2 bg-[#1A1A1A] text-white border border-[#99775C]/50 text-xs font-bold uppercase tracking-widest hover:bg-[#99775C] transition-colors duration-200 cursor-pointer rounded-none text-center"
                     id="insight-deploy-btn"
                   >
-                    Deploy Solution
+                    Request Territory Audit
                   </button>
                 </div>
 
