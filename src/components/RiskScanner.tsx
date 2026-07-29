@@ -92,7 +92,7 @@ export default function RiskScanner({ onCtaClick }: RiskScannerProps) {
             How much revenue is your business <span className="font-serif italic text-[#99775C] lowercase">actively leaking?</span>
           </h2>
           <p className="text-sm sm:text-base text-[#99775C] font-medium leading-relaxed">
-            Unanswered phone calls, unrequested reviews, and silent estimates bleed cash. Select the failure scenarios your field business faces to scan your operational leakage profile.
+            Unanswered phone calls, missed heatwave leads, and silent system replacement estimates bleed cash. Select the failure scenarios your HVAC business faces to scan your operational leakage profile.
           </p>
         </motion.div>
 

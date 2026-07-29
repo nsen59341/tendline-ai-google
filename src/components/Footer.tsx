@@ -48,7 +48,7 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
             </div>
             
             <p className="text-xs text-[#BCB6AF] leading-relaxed max-w-sm font-medium uppercase tracking-tight">
-              Premium B2B AI operational systems and complete growth infrastructure designed exclusively for Home Services: HVAC, Plumbing, Electrical, and Pest Control contractors.
+              Premium B2B AI operational systems and 24/7 autonomous dispatch infrastructure designed exclusively for HVAC Contractors across North America.
             </p>
 
             <div className="flex items-center space-x-2 bg-[#EAE7DD]/10 border border-[#99775C]/20 p-2 rounded-none max-w-xs">

@@ -118,24 +118,24 @@ export default function Hero({ onCtaClick }: HeroProps) {
             <div className="inline-flex items-center space-x-2 bg-[#EAE7DD] border border-[#99775C]/30 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-none">
               <Sparkles className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#99775C] animate-pulse" />
               <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-widest text-[#99775C] font-bold">
-                Home Services AI Infrastructure
+                HVAC Contractor AI Infrastructure
               </span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-[50px] xl:text-[58px] lg:leading-[1.0] font-serif italic text-[#1A1A1A]">
               Stop Letting Missed Calls
               <span className="text-[#99775C] not-italic font-sans font-black uppercase tracking-tighter block mt-1 sm:mt-2 text-3xl sm:text-5xl lg:text-[52px] xl:text-[60px]">
-                Book Your Competitors.
+                Book Your HVAC Competitors.
               </span>
             </h1>
 
             {/* Problem & Agitate - Scannable & Trimmed */}
             <div className="space-y-2 text-[#1A1A1A]/90">
               <p className="text-xs sm:text-base lg:text-lg font-medium leading-snug text-[#99775C]">
-                Contractors <span className="font-black text-[#1A1A1A]">miss 35% to 50% of inbound calls</span>, losing <span className="font-black text-[#1A1A1A]">$250–$2,400 per lead</span>.
+                HVAC Contractors <span className="font-black text-[#1A1A1A]">miss 35% to 50% of inbound calls</span> during heatwaves and freezes, losing <span className="font-black text-[#1A1A1A]">$350–$2,800+ per missed lead</span>.
               </p>
               <p className="text-xs sm:text-sm font-semibold text-[#1A1A1A] leading-relaxed border-l-2 border-[#99775C] pl-3 py-1 bg-[#99775C]/5">
-                <strong className="text-[#99775C] uppercase tracking-wider text-[10px] sm:text-xs block mb-0.5">The Solution:</strong> 24/7 AI Voice & Chat agents built for HVAC, Plumbing & Electrical. We connect to your CRM to answer calls, qualify leads, and book jobs on autopilot.
+                <strong className="text-[#99775C] uppercase tracking-wider text-[10px] sm:text-xs block mb-0.5">The Solution:</strong> 24/7 AI Voice & Web Chat dispatch agents built exclusively for HVAC Contractors. Integrates directly with ServiceTitan, Housecall Pro & Jobber to answer calls, qualify AC/heating emergencies, and book jobs on autopilot.
               </p>
             </div>
 

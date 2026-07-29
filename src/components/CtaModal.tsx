@@ -58,7 +58,7 @@ export default function CtaModal({ isOpen, onClose, bookingLink }: CtaModalProps
                     Pre-Qualifying Strategy Session
                   </h3>
                   <p className="text-xs text-[#EAE7DD]/80 leading-relaxed font-light">
-                    We only partner with 2 new contractors per territory to ensure localized SEO and operational focus. Let's analyze your systems.
+                    We only partner with 2 HVAC contractors per territory to ensure localized SEO and operational focus. Let's analyze your systems.
                   </p>
 
                   <div className="space-y-4 pt-4">

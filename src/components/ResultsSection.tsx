@@ -56,7 +56,7 @@ export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
             5 Strategic Insights: <span className="font-serif italic text-[#99775C] lowercase">the science of AI ROI</span>
           </h2>
           <p className="text-xs sm:text-sm text-[#1A1A1A]/80 font-medium leading-relaxed">
-            Data from 1,200+ HVAC, Plumbing & Electrical contractors. Scannable findings in 15 seconds:
+            Data from 1,200+ HVAC contractors across North America. Scannable findings in 15 seconds:
           </p>
         </motion.div>
 
