@@ -6,7 +6,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { insights } from "../data";
-import { FileText, CheckCircle2, Award, Zap, AlertCircle, TrendingUp, Play } from "lucide-react";
+import { FileText, CheckCircle2, Zap, AlertCircle, TrendingUp, Play, ArrowRight } from "lucide-react";
+import AppLink from "./AppLink";
 
 interface ResultsSectionProps {
   onCtaClick: () => void;
@@ -46,18 +47,29 @@ export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mb-10 space-y-2"
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
         >
-          <span className="font-mono text-xs text-[#99775C] uppercase tracking-widest font-extrabold flex items-center">
-            <TrendingUp className="h-4 w-4 mr-1.5 text-[#99775C]" />
-            Field-Tested AI Benchmarks
-          </span>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#1A1A1A] tracking-tighter uppercase">
-            5 Strategic Insights: <span className="font-serif italic text-[#99775C] lowercase">the science of AI ROI</span>
-          </h2>
-          <p className="text-xs sm:text-sm text-[#1A1A1A]/80 font-medium leading-relaxed">
-            Data from 1,200+ HVAC contractors across North America. Scannable findings in 15 seconds:
-          </p>
+          <div className="max-w-3xl space-y-2">
+            <span className="font-mono text-xs text-[#99775C] uppercase tracking-widest font-extrabold flex items-center">
+              <TrendingUp className="h-4 w-4 mr-1.5 text-[#99775C]" />
+              Field-Tested AI Benchmarks
+            </span>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#1A1A1A] tracking-tighter uppercase">
+              5 Strategic Insights: <span className="font-serif italic text-[#99775C] lowercase">the science of AI ROI</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-[#1A1A1A]/80 font-medium leading-relaxed">
+              Data from 1,200+ HVAC contractors across North America. Scannable findings in 15 seconds:
+            </p>
+          </div>
+
+          <AppLink
+            href="/blog"
+            className="inline-flex items-center space-x-2 self-start sm:self-auto px-4 py-2 bg-white border border-[#99775C]/40 hover:border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white text-xs font-bold uppercase tracking-widest transition-colors duration-200 rounded-none whitespace-nowrap shrink-0"
+            id="all-insights-link"
+          >
+            <span>All Insights</span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </AppLink>
         </motion.div>
 
         {/* Interactive Grid Board */}
@@ -203,18 +215,28 @@ export default function ResultsSection({ onCtaClick }: ResultsSectionProps) {
                   </p>
                 </div>
 
-                {/* Quick Deploy Trigger */}
+                {/* Quick Deploy Trigger & Read Full Article */}
                 <div className="pt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <p className="text-[10px] text-[#99775C] uppercase tracking-wider font-bold">
                     Deploy this module in your exclusive territory:
                   </p>
-                  <button
-                    onClick={onCtaClick}
-                    className="px-5 py-2 bg-[#1A1A1A] text-white border border-[#99775C]/50 text-xs font-bold uppercase tracking-widest hover:bg-[#99775C] transition-colors duration-200 cursor-pointer rounded-none text-center"
-                    id="insight-deploy-btn"
-                  >
-                    Request Territory Audit
-                  </button>
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0">
+                    <AppLink
+                      href={`/blog/${currentInsight.articleSlug}`}
+                      className="inline-flex items-center justify-center space-x-1.5 px-4 py-2 bg-[#EAE7DD]/70 hover:bg-[#EAE7DD] text-[#1A1A1A] border border-[#99775C]/40 hover:border-[#99775C] text-xs font-bold uppercase tracking-widest transition-colors duration-200 rounded-none whitespace-nowrap"
+                      id="insight-read-article-link"
+                    >
+                      <span>Read Full Article</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#99775C]" />
+                    </AppLink>
+                    <button
+                      onClick={onCtaClick}
+                      className="px-5 py-2 bg-[#1A1A1A] text-white border border-[#99775C]/50 text-xs font-bold uppercase tracking-widest hover:bg-[#99775C] transition-colors duration-200 cursor-pointer rounded-none text-center whitespace-nowrap"
+                      id="insight-deploy-btn"
+                    >
+                      Request Territory Audit
+                    </button>
+                  </div>
                 </div>
 
               </motion.div>

@@ -3,8 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Phone, Mail, MapPin, ArrowUpRight, ShieldCheck, Heart } from "lucide-react";
+import { Mail, MapPin, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
+import AppLink from "./AppLink";
+import { SOCIAL_PROFILES } from "../data/articlesMeta";
 
 interface FooterProps {
   onCtaClick: () => void;
@@ -15,6 +17,15 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const techStack = ["Voiceflow", "Vapi", "Retell AI", "Make.com", "n8n", "Bolt", "Lovable (AI coding)"];
+
+  const footerLinks = [
+    { label: "Industry Insights", href: "/#insights" },
+    { label: "Diagnostic Scanner", href: "/#diagnostic" },
+    { label: "AI Blueprint Offers", href: "/#offers" },
+    { label: "Security & Trust", href: "/#security" },
+    { label: "FAQs", href: "/#faqs" },
+    { label: "All Insights", href: "/blog" },
+  ];
 
   return (
     <footer className="bg-[#1A1A1A] text-[#D4CFC9] pt-16 pb-12 border-t border-[#99775C]/25 relative" id="footer">
@@ -65,20 +76,16 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
               Site Navigation
             </h5>
             <ul className="space-y-2 text-xs font-bold uppercase tracking-wider" aria-label="Footer Navigation">
-              {["Industry Insights", "Diagnostic Scanner", "AI Blueprint Offers", "Security & Trust", "FAQs"].map((item, idx) => {
-                const links = ["#insights", "#diagnostic", "#offers", "#security", "#faqs"];
-                return (
-                  <li key={item}>
-                    <motion.a 
-                      href={links[idx]} 
-                      whileHover={{ x: 3, color: "#FFFFFF" }}
-                      className="inline-block transition-colors text-[#A59F97]"
-                    >
-                      {item}
-                    </motion.a>
-                  </li>
-                );
-              })}
+              {footerLinks.map((item) => (
+                <li key={item.label}>
+                  <AppLink
+                    href={item.href}
+                    className="inline-block transition-colors text-[#A59F97] hover:text-white"
+                  >
+                    {item.label}
+                  </AppLink>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -118,6 +125,22 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
                 <Mail className="h-4 w-4 text-[#99775C] shrink-0" />
                 <span className="truncate">nsen59341@gmail.com</span>
               </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 pt-1" aria-label="Social Profiles">
+              {SOCIAL_PROFILES.map((profile) => (
+                <a
+                  key={profile.name}
+                  href={profile.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-1 font-mono text-[10px] uppercase tracking-widest px-2.5 py-1.5 border border-[#99775C]/30 bg-[#EAE7DD]/5 text-[#EAE7DD] hover:border-[#99775C] hover:bg-[#99775C] hover:text-white transition-colors"
+                  aria-label={`TendLine ${profile.name}`}
+                >
+                  <span>{profile.name}</span>
+                  <ArrowUpRight className="h-3 w-3 shrink-0" />
+                </a>
+              ))}
             </div>
 
             <motion.button
@@ -161,10 +184,10 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
           </div>
 
           <div className="flex items-center space-x-4">
-            <a href="#security" className="hover:text-white transition-colors flex items-center">
+            <AppLink href="/#security" className="hover:text-white transition-colors flex items-center">
               <ShieldCheck className="h-3.5 w-3.5 mr-1 text-green-500" />
               <span>Data Protection Guidelines</span>
-            </a>
+            </AppLink>
             <span>|</span>
             <a href={bookingLink} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Direct Scheduler Link

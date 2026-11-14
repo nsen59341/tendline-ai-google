@@ -8,6 +8,7 @@ import { IndustryInsight, FailureScenario, OfferTier, FaqItem } from "./types";
 export const insights: IndustryInsight[] = [
   {
     id: 1,
+    articleSlug: "ai-voice-agents-hvac",
     title: "AI Voice Agents Eliminate Inbound HVAC Call Leakage",
     source: "1,200+ HVAC Contractor Benchmark Study",
     finding: "HVAC contractors miss 35–50% of inbound calls during summer heatwaves and winter freezes. 24/7 AI Voice Assistants answer every call and recover $8,000–$18,000/mo in lost AC/heating jobs.",
@@ -27,6 +28,7 @@ export const insights: IndustryInsight[] = [
   },
   {
     id: 2,
+    articleSlug: "hvac-emergency-call-capture",
     title: "No-Cooling & Furnace Emergency Call Capture",
     source: "HVAC Field Dispatch Data & Benchmark Study",
     finding: "Small HVAC contractors lose $50k–$130k/yr on unanswered after-hours emergency calls. Capturing $1,800–$3,200 emergency AC/heating replacement tickets transforms contractor profitability.",
@@ -46,6 +48,7 @@ export const insights: IndustryInsight[] = [
   },
   {
     id: 3,
+    articleSlug: "hvac-web-lead-capture",
     title: "Rapid Web HVAC Lead Capture (Sub-2 Minute Response)",
     source: "HVAC Lead Conversion Benchmark 2025",
     finding: "AI web chat slashes web inquiry response times from 4+ hours to under 2 minutes. 78% of homeowners hire the first HVAC contractor who responds when their AC is out.",
@@ -65,6 +68,7 @@ export const insights: IndustryInsight[] = [
   },
   {
     id: 4,
+    articleSlug: "automated-google-reviews",
     title: "Automated Google Reviews & Estimate Re-engagement",
     source: "Local SEO & HVAC Contractor Study",
     finding: "Automated post-job review sequences boost Google ratings to 4.8+ stars while automatic 48-hour equipment replacement estimate re-engagement captures outstanding quotes.",
@@ -84,6 +88,7 @@ export const insights: IndustryInsight[] = [
   },
   {
     id: 5,
+    articleSlug: "predictive-hvac-maintenance",
     title: "Predictive Off-Peak Seasonal Maintenance Outreach",
     source: "HVAC Industry Benchmark Report 2026",
     finding: "Predictive maintenance outreach linked to weather shifts and equipment age prevents traditional spring and fall revenue dips for HVAC contractors.",
