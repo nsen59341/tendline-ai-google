@@ -7,7 +7,7 @@ import { useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2, ChevronRight, FileText, User } from "lucide-react";
 import { BlogArticle } from "../types";
 import { getRelatedArticles } from "../data/articles";
-import { SOCIAL_PROFILES, WHATSAPP_CONTACT } from "../data/articlesMeta";
+import { SOCIAL_PROFILES } from "../data/articlesMeta";
 import AppLink from "./AppLink";
 import ArticleCard from "./ArticleCard";
 
@@ -278,15 +278,6 @@ export default function BlogArticlePage({ article, onCtaClick }: BlogArticlePage
                       <ArrowUpRight className="h-3 w-3 shrink-0" />
                     </a>
                   ))}
-                  <a
-                    href={WHATSAPP_CONTACT.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1 font-mono text-[10px] font-bold uppercase tracking-widest text-[#1A1A1A] hover:text-[#99775C] underline underline-offset-4 transition-colors"
-                  >
-                    <span>WhatsApp: {WHATSAPP_CONTACT.number}</span>
-                    <ArrowUpRight className="h-3 w-3 shrink-0 text-[#99775C]" />
-                  </a>
                 </div>
               </div>
             </section>

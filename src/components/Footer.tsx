@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Mail, MapPin, ShieldCheck, ArrowUpRight, MessageCircle } from "lucide-react";
+import { Mail, MapPin, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
 import AppLink from "./AppLink";
 import BrandLogo from "./BrandLogo";
@@ -119,18 +119,6 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
                 <Mail className="h-4 w-4 text-[#99775C] shrink-0" />
                 <span className="truncate">nsen59341@gmail.com</span>
               </a>
-              <a
-                href={WHATSAPP_CONTACT.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 text-[#EAE7DD] hover:text-[#99775C] transition-colors group"
-                id="footer-whatsapp-link"
-                aria-label={`Chat on WhatsApp with ${WHATSAPP_CONTACT.number}`}
-              >
-                <MessageCircle className="h-4 w-4 text-[#99775C] shrink-0 group-hover:scale-110 transition-transform" />
-                <span>WhatsApp: {WHATSAPP_CONTACT.number}</span>
-                <ArrowUpRight className="h-3.5 w-3.5 text-[#99775C] shrink-0" />
-              </a>
             </div>
 
             <div className="flex flex-wrap items-center gap-2 pt-1" aria-label="Social Profiles">
@@ -147,6 +135,17 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
                   <ArrowUpRight className="h-3 w-3 shrink-0" />
                 </a>
               ))}
+              <a
+                href={WHATSAPP_CONTACT.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-1 font-mono text-[10px] uppercase tracking-widest px-2.5 py-1.5 border border-[#99775C]/30 bg-[#EAE7DD]/5 text-[#EAE7DD] hover:border-[#99775C] hover:bg-[#99775C] hover:text-white transition-colors"
+                id="footer-whatsapp-link"
+                aria-label="TendLine WhatsApp"
+              >
+                <span>WhatsApp</span>
+                <ArrowUpRight className="h-3 w-3 shrink-0" />
+              </a>
             </div>
 
             <motion.button

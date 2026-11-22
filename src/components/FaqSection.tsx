@@ -6,8 +6,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { faqs } from "../data";
-import { HelpCircle, ChevronDown, ChevronUp, CheckCircle, MessageCircle, ArrowUpRight } from "lucide-react";
-import { WHATSAPP_CONTACT } from "../data/articlesMeta";
+import { HelpCircle, ChevronDown, ChevronUp, CheckCircle } from "lucide-react";
 
 interface FaqSectionProps {
   onCtaClick: () => void;
@@ -71,17 +70,6 @@ export default function FaqSection({ onCtaClick }: FaqSectionProps) {
               >
                 Request Custom Tech Audit
               </motion.button>
-              <a
-                href={WHATSAPP_CONTACT.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center space-x-2 border border-[#99775C]/35 hover:border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#EAE7DD]/50 text-xs font-bold uppercase tracking-widest py-2.5 px-4 rounded-none transition-colors"
-                id="faq-whatsapp-link"
-              >
-                <MessageCircle className="h-3.5 w-3.5 text-[#99775C]" />
-                <span>WhatsApp: {WHATSAPP_CONTACT.number}</span>
-                <ArrowUpRight className="h-3.5 w-3.5 text-[#99775C]" />
-              </a>
             </div>
           </motion.div>
 
