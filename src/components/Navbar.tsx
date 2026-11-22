@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import AppLink from "./AppLink";
+import BrandLogo from "./BrandLogo";
 
 interface NavbarProps {
   onCtaClick: () => void;
@@ -39,8 +40,8 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#EAE7DD]/95 backdrop-blur-md border-b border-[#99775C]/20 py-3 shadow-sm"
-          : "bg-[#EAE7DD] border-b border-[#99775C]/10 py-5"
+          ? "bg-[#EAE7DD]/95 backdrop-blur-md border-b border-[#99775C]/20 py-2.5 shadow-sm"
+          : "bg-[#EAE7DD] border-b border-[#99775C]/10 py-3.5"
       }`}
       id="main-header"
     >
@@ -49,19 +50,9 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
           {/* Logo & Navigation Group */}
           <div className="flex items-center space-x-8 xl:space-x-12 min-w-0">
             {/* Logo Brand Area */}
-            <div className="flex items-center space-x-2 shrink-0">
-              <AppLink href="/" className="flex items-center space-x-2 group">
-                <div className="h-8 w-8 bg-[#99775C] flex items-center justify-center rounded-xs transition-transform duration-300 group-hover:scale-105 shrink-0">
-                  <span className="font-sans font-black text-[#EAE7DD] text-sm tracking-tighter">TL</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-sans font-black text-xl tracking-tighter uppercase text-[#1A1A1A] group-hover:text-[#99775C] transition-colors leading-none whitespace-nowrap">
-                    TendLine
-                  </span>
-                  <span className="font-mono text-[8px] uppercase tracking-widest text-[#99775C] leading-none mt-1 whitespace-nowrap">
-                    AI Growth Systems
-                  </span>
-                </div>
+            <div className="flex items-center shrink-0">
+              <AppLink href="/" className="flex items-center group" ariaLabel="TendLine AI Growth Systems Home">
+                <BrandLogo variant="navbar" />
               </AppLink>
             </div>
 

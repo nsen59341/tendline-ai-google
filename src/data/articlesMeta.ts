@@ -5,6 +5,17 @@
 
 import { ArticleAuthor, BlogArticleMeta } from "../types";
 
+export const WHATSAPP_CONTACT = {
+  number: "9007145941",
+  formatted: "+91 9007145941",
+  href: "https://wa.me/919007145941",
+} as const;
+
+export const BRAND_LOGOS = {
+  light: "/assets/aistudio/Extract_logo_image_from_here_202609011956_bd906bf9.jpeg",
+  textured: "/assets/aistudio/bg_1f33d0cf.jfif",
+} as const;
+
 export const SOCIAL_PROFILES = [
   {
     name: "LinkedIn",

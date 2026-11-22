@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Mail, MapPin, ShieldCheck, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, ShieldCheck, ArrowUpRight, MessageCircle } from "lucide-react";
 import { motion } from "motion/react";
 import AppLink from "./AppLink";
-import { SOCIAL_PROFILES } from "../data/articlesMeta";
+import BrandLogo from "./BrandLogo";
+import { SOCIAL_PROFILES, WHATSAPP_CONTACT } from "../data/articlesMeta";
 
 interface FooterProps {
   onCtaClick: () => void;
@@ -44,19 +45,9 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
           
           {/* Brand Col */}
           <div className="md:col-span-4 space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="h-9 w-9 bg-[#EAE7DD] flex items-center justify-center rounded-none border border-[#99775C]/20">
-                <span className="font-sans font-black text-[#1A1A1A] text-lg">TL</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-sans font-black text-base uppercase tracking-widest text-white leading-none">
-                  TendLine
-                </span>
-                <span className="font-mono text-[8px] uppercase tracking-widest text-[#99775C] leading-none mt-1 font-bold">
-                  AI Growth Systems
-                </span>
-              </div>
-            </div>
+            <AppLink href="/" className="inline-block w-full max-w-[260px]" ariaLabel="TendLine AI Growth Systems Home">
+              <BrandLogo variant="card" className="w-full" />
+            </AppLink>
             
             <p className="text-xs text-[#BCB6AF] leading-relaxed max-w-sm font-medium uppercase tracking-tight">
               Premium B2B AI operational systems and 24/7 autonomous dispatch infrastructure designed exclusively for HVAC Contractors across North America.
@@ -121,10 +112,25 @@ export default function Footer({ onCtaClick, bookingLink }: FooterProps) {
                 <MapPin className="h-4 w-4 text-[#99775C] shrink-0" />
                 <span>United States Market Operations</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <a
+                href="mailto:nsen59341@gmail.com"
+                className="flex items-center space-x-2 hover:text-white transition-colors"
+              >
                 <Mail className="h-4 w-4 text-[#99775C] shrink-0" />
                 <span className="truncate">nsen59341@gmail.com</span>
-              </div>
+              </a>
+              <a
+                href={WHATSAPP_CONTACT.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-[#EAE7DD] hover:text-[#99775C] transition-colors group"
+                id="footer-whatsapp-link"
+                aria-label={`Chat on WhatsApp with ${WHATSAPP_CONTACT.number}`}
+              >
+                <MessageCircle className="h-4 w-4 text-[#99775C] shrink-0 group-hover:scale-110 transition-transform" />
+                <span>WhatsApp: {WHATSAPP_CONTACT.number}</span>
+                <ArrowUpRight className="h-3.5 w-3.5 text-[#99775C] shrink-0" />
+              </a>
             </div>
 
             <div className="flex flex-wrap items-center gap-2 pt-1" aria-label="Social Profiles">

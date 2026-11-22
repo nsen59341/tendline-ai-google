@@ -4,7 +4,9 @@
  */
 
 import { motion, AnimatePresence } from "motion/react";
-import { X, Calendar, MessageSquare, PhoneCall, ShieldCheck } from "lucide-react";
+import { X, Calendar, MessageSquare, PhoneCall, ShieldCheck, MessageCircle, ArrowUpRight } from "lucide-react";
+import BrandLogo from "./BrandLogo";
+import { WHATSAPP_CONTACT } from "../data/articlesMeta";
 
 interface CtaModalProps {
   isOpen: boolean;
@@ -51,9 +53,7 @@ export default function CtaModal({ isOpen, onClose, bookingLink }: CtaModalProps
               {/* Left Side: Pitch (Visible only on desktop) */}
               <div className="hidden md:flex md:col-span-4 bg-[#1A1A1A] text-white p-8 flex-col justify-between border-r border-[#99775C]/20">
                 <div className="space-y-6">
-                  <div className="flex items-center space-x-2">
-                    <span className="font-mono text-[9px] tracking-widest text-[#99775C] uppercase font-bold">TendLine AI</span>
-                  </div>
+                  <BrandLogo variant="card" className="w-full max-w-[230px]" />
                   <h3 className="font-sans text-xl font-black uppercase tracking-tight leading-none">
                     Pre-Qualifying Strategy Session
                   </h3>
@@ -123,17 +123,25 @@ export default function CtaModal({ isOpen, onClose, bookingLink }: CtaModalProps
                   </div>
 
                   {/* Backup & Confirm Controls */}
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-2 border-t border-[#99775C]/20">
-                    <p className="text-[9px] text-[#99775C] font-mono uppercase tracking-widest font-bold">
-                      Iframe not loading? Book directly using the button on the right.
-                    </p>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 pt-2 border-t border-[#99775C]/20">
+                    <a
+                      href={WHATSAPP_CONTACT.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center space-x-1.5 border border-[#99775C]/50 hover:border-[#1A1A1A] bg-white hover:bg-[#1A1A1A] text-[#1A1A1A] hover:text-white text-xs font-bold uppercase tracking-widest py-2.5 px-4 rounded-none transition-colors whitespace-nowrap"
+                      id="modal-whatsapp-link"
+                    >
+                      <MessageCircle className="h-3.5 w-3.5 text-[#99775C]" />
+                      <span>WhatsApp: {WHATSAPP_CONTACT.number}</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
                     <motion.a
                       href={bookingLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center justify-center space-x-1.5 bg-[#1A1A1A] hover:bg-[#99775C] text-white text-xs font-bold uppercase tracking-widest py-2.5 px-4 rounded-none transition-all"
+                      className="inline-flex items-center justify-center space-x-1.5 bg-[#1A1A1A] hover:bg-[#99775C] text-white text-xs font-bold uppercase tracking-widest py-2.5 px-4 rounded-none transition-all whitespace-nowrap"
                       id="direct-booking-link"
                     >
                       <Calendar className="h-3.5 w-3.5" />
